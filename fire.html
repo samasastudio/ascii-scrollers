@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>typograph</title>
+
+    <!-- HTML -->
+
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Mono">
+    <style>
+        html,
+        body {
+            height: 100%;
+            font-family: Space Mono;
+            color: #FFCE4A;
+            /*   text-shadow: 0 0 1px grey; */
+            background-color: #3B2A8A;
+            /*   background: linear-gradient(#3B2A8A, #3B2A8A, #FCA425); */
+            font-weight: bold;
+            line-height: .94;
+            overflow: hidden;
+        }
+
+        #printed {
+            position: relative;
+            display: block;
+            margin: auto;
+            text-align: center;
+            width: 40vw;
+            /*   top: 10%; */
+            bottom: 10%;
+            height: 90vh;
+            overflow: hidden;
+            overflow-wrap: break-word;
+            /*   background: linear-gradient(#3B2A8A, #E0251B); */
+            background-color: rgba(0, 0, 0, 0);
+            border-radius: 500px;
+        }
+
+        #fade {
+            position: relative;
+            width: 40vw;
+            height: 90vh;
+            margin: auto;
+            bottom: 100%;
+            background: linear-gradient(#3B2A8A, #3B2A8A, rgba(0, 0, 0, 0), #E0251B);
+            border-radius: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="printed"></p>
+    <div id="fade"></div>
+    <!-- Project -->
+    <script src="main.js"></script>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        $('#printed').animate({ scrollTop: 20000 }, 500000, "linear", 0);
+
+        var draw = () => {
+            var print = '';
+            for (var i = 0; i < 10 ** 3.7; i++) {
+                let token = Math.random();
+
+                if (token >= 0.5) {
+                    print += ' `'
+                } else {
+                    print += ': '
+                }
+
+                if (token >= 0.98 || token <= 0.02) {
+                    print += ' * '
+                }
+            }
+            var toPrint = document.createTextNode(print);
+            document.getElementById("printed").appendChild(toPrint);
+        };
+        draw();
+
+        setInterval(function () { draw(); }, 10000);
+    </script>
+</body>
+
+</html>

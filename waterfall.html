@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>typograph</title>
+
+    <!-- HTML -->
+
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Mono">
+    <style>
+        html,
+        body {
+            height: 100%;
+            font-family: Space Mono;
+            color: #5B98A6;
+            /*   text-shadow: 0 0 1px grey; */
+            background: linear-gradient(#35748C, #024059, #024059);
+            font-weight: bold;
+            line-height: .94;
+            overflow: hidden;
+        }
+
+        #printed {
+            position: relative;
+            display: block;
+            margin: auto;
+            text-align: center;
+            width: 70vw;
+            top: 10%;
+            height: 70vh;
+            overflow: hidden;
+            overflow-wrap: break-word;
+            background: linear-gradient(#024059, #5B98A6);
+            box-shadow: 0 -5px 5px #024059;
+            transform: rotate(180deg) scaleX(-1);
+        }
+
+        #fade {
+            position: relative;
+            width: 70vw;
+            height: 30vh;
+            margin: auto;
+            bottom: 20%;
+            background: linear-gradient(rgba(0, 0, 0, 0), #024059);
+        }
+    </style>
+</head>
+
+<body>
+    <p id="printed"></p>
+    <div id="fade"></div>
+    <!-- Project -->
+    <script src="main.js"></script>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        $('#printed').animate({ scrollTop: 20000 }, 500000, "linear", 0);
+
+        var draw = () => {
+            var print = '';
+            for (var i = 0; i < 10 ** 3.7; i++) {
+                let token = Math.random();
+
+                if (token >= 0.5) {
+                    print += ' \\'
+                } else {
+                    print += '/ '
+                }
+            }
+            var toPrint = document.createTextNode(print);
+            document.getElementById("printed").appendChild(toPrint);
+        };
+        draw();
+
+        setInterval(function () { draw(); }, 10000);
+    </script>
+</body>
+
+</html>

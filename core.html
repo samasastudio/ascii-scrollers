@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>core</title>
+
+    <!-- HTML -->
+
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Mono">
+
+    <style>
+        html,
+        body {
+            height: 100vh;
+            font-family: Space Mono;
+            color: #EEEEEE;
+            text-shadow: 0 0 5px #EEEEEE;
+            background-color: #EEEEEE;
+            font-weight: bold;
+            line-height: .94;
+            overflow: hidden;
+        }
+
+        #printed {
+            position: relative;
+            display: block;
+            text-align: center;
+            margin: auto;
+            width: 50vh;
+            height: 50vh;
+            top: 25vh;
+            /*   bottom: 25vh; */
+            overflow: hidden;
+            overflow-wrap: break-word;
+            background-color: #202729;
+            box-shadow: 0 0 5px black;
+            transform: rotate(90deg);
+            border-radius: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="printed"></p>
+    <!-- Project -->
+    <script src="main.js"></script>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        $('#printed').animate({ scrollTop: 20000 }, 500000, "linear", 0);
+
+        var draw = () => {
+            var print = '';
+            for (var i = 0; i < 10 ** 3.7; i++) {
+                let token = Math.random();
+
+                if (token >= 0.5) {
+                    print += '|'
+                } else {
+                    print += '_'
+                }
+            }
+            var toPrint = document.createTextNode(print);
+            document.getElementById("printed").appendChild(toPrint);
+        };
+        draw();
+
+        setInterval(function () { draw(); }, 10000);
+    </script>
+</body>
+
+</html>
